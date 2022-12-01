@@ -1,0 +1,46 @@
+.__nav_container {
+    cursor: pointer;
+    float: left;
+    margin: 0;
+    overflow: visible;
+    position: relative;
+    width: 14.28571%;
+}
+
+.__nav_link {
+    background: #fff;
+    float: left;
+    height: 87px;
+    width: 100%;
+}
+
+.__nav_logo {
+    height: 30px;
+    width: 30px;
+    display: block;
+    font-size: 175%;
+    line-height: 100%;
+    position: relative;
+    text-align: center;
+}
+
+.__nav_title {
+    font-family: Lato-Bold,arial,sans-serif;
+    font-weight: 500;
+    display: block;
+    font-size: 18px;
+    margin: 7px auto;
+    opacity: 1;
+    position: relative;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.__nav_fill {
+    height: 0px;
+    left: 0;
+    position: absolute;
+    display: block;
+    height: 87px;
+    opacity: 1;
+}

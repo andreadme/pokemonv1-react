@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+/** Import Components **/
+import Login from './components/Login'
+import Navbar from './components/Navbar'
+import Register from './components/Register'
+import AddLeague from './components/AddLeague'
+
+import React from 'react'
+import { Routes , Route } from "react-router-dom"
+import NotFound from "./pages/NotFound"
+import ComingSoon from "./pages/ComingSoon"
+import AddPokemon from './components/AddPokemon'
+import ViewPokemon from './components/ViewPokemon'
+import ViewAllLeagues from './components/ViewAllLeagues'
+import ViewMySlots from './components/ViewMySlots'
+import Dashboard from './components/Dashboard'
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+
+
+      <Routes> 
+          <Route path ="/login" element= {<Login />}/> 
+          <Route path ="/register" element= {<Register />}/>
+          <Route path ="/" element= {<Dashboard />}/>
+          <Route path ="/pokedex" element= {<AddPokemon />}/>
+          <Route path ="/leagues" element= {<ViewAllLeagues />}/>
+          <Route path ="/profile" element= {<ViewMySlots />}/>
+          <Route path ="/battles" element= {<ComingSoon />}/>
+          <Route path ="/events" element= {<ComingSoon />}/>
+          <Route path ="/news" element= {<ComingSoon />}/>
+          <Route path ="/view-pokemon/:pokemonId" element={<ViewPokemon /> } /> 
+          
+          {/* admin route */}
+          <Route path ="/create-league" element={<AddLeague /> } /> 
+
+          
+          {/* <Route path ="/view-all/league" element={<ViewAllLeagues /> } /> 
+          <Route path ="/create-pokemon" element={<AddPokemon /> } /> 
+          <Route path ="/view-pokemon/:pokemonId" element={<ViewPokemon /> } /> 
+          <Route path ="/view-slot/:trainerId" element={<ViewMySlots /> } />  */}
+          <Route path ="/*" element= {<NotFound />}/> 
+      </Routes> 
+    </>
   );
 }
 

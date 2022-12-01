@@ -1,13 +1,193 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Lato-Black';
+  src: url(./assets/fonts/Lato/Lato-Black.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato-Bold';
+  src: url(./assets/fonts/Lato/Lato-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato-Regular';
+  src: url(./assets/fonts/Lato/Lato-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato-Light';
+  src: url(./assets/fonts/Lato/Lato-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato-Thin';
+  src: url(./assets/fonts/Lato/Lato-Thin.ttf) format('truetype');
+}
+
+body, html {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #EEEDF4;
+}
+
+* {
+  font-family: Lato-Regular, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+li.nav-home:after {
+  background-color: #919191;
+  border-radius: 0 0 0 8px;
+  content: ' ';
+  height: 6px;
+  left: 0;
+  position: absolute;
+  bottom: -6px;
+  width: 100%;
+  z-index: 1;
+}
+
+li.nav-home a:active {
+  background-color: #919191;
+}
+
+li.nav-home:hover a, li.nav-container:active a {
+  transition: background-color 0.3s;
+  transition-timing-function: ease-out;
+  background-color: #919191;
+}
+
+li.nav-pokedex:after {
+  background-color: #E3350D;
+  border-radius: 0 0 0 8px;
+  content: ' ';
+  height: 6px;
+  left: 0;
+  position: absolute;
+  bottom: -6px;
+  width: 100%;
+  z-index: 1;
+}
+
+li.nav-pokedex:hover a, li.nav-pokedex:active a {
+  transition: background-color 0.3s;
+  transition-timing-function: ease-out;
+  background-color: #E3350D;
+}
+
+li.nav-leagues:after {
+  background-color: #EE6B2F;
+  border-radius: 0 0 0 8px;
+  content: ' ';
+  height: 6px;
+  left: 0;
+  position: absolute;
+  bottom: -6px;
+  width: 100%;
+  z-index: 1;
+}
+
+li.nav-leagues:hover a {
+  transition: background-color 0.3s;
+  transition-timing-function: ease-out;
+  background-color: #EE6B2F;
+}
+
+li.nav-profile:after {
+  background-color: #E6BC2F;
+  border-radius: 0 0 0 8px;
+  content: ' ';
+  height: 6px;
+  left: 0;
+  position: absolute;
+  bottom: -6px;
+  width: 100%;
+  z-index: 1;
+}
+
+li.nav-profile:hover a {
+  transition: background-color 0.3s;
+  transition-timing-function: ease-out;
+  background-color: #E6BC2F;
+}
+
+li.nav-battles:after {
+  background-color: #4DAD5B;
+  border-radius: 0 0 0 8px;
+  content: ' ';
+  height: 6px;
+  left: 0;
+  position: absolute;
+  bottom: -6px;
+  width: 100%;
+  z-index: 1;
+}
+
+li.nav-battles:hover a {
+  transition: background-color 0.3s;
+  transition-timing-function: ease-out;
+  background-color: #4DAD5B;
+}
+
+li.nav-events:after {
+  background-color: #30A7D7;
+  border-radius: 0 0 0 8px;
+  content: ' ';
+  height: 6px;
+  left: 0;
+  position: absolute;
+  bottom: -6px;
+  width: 100%;
+  z-index: 1;
+}
+
+li.nav-events:hover a {
+  transition: background-color 0.3s;
+  transition-timing-function: ease-out;
+  background-color: #30A7D7;
+}
+
+li.nav-news:after {
+  background-color: #1B53BA;
+  border-radius: 0 0 0 8px;
+  content: ' ';
+  height: 6px;
+  left: 0;
+  position: absolute;
+  bottom: -6px;
+  width: 100%;
+  z-index: 1;
+}
+
+li.nav-news:hover a {
+  transition: background-color 0.3s;
+  transition-timing-function: ease-out;
+  background-color: #1B53BA;
+}
+
+li.nav-control:after {
+  background-color: #111827;
+  border-radius: 0 0 0 8px;
+  content: ' ';
+  height: 6px;
+  left: 0;
+  position: absolute;
+  bottom: -6px;
+  width: 100%;
+  z-index: 1;
+}
+
+li.nav-control:hover a {
+  transition: background-color 0.3s;
+  transition-timing-function: ease-out;
+  background-color: #111827;
 }
