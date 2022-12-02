@@ -12,10 +12,10 @@ import style from "../assets/scss/navbar.module.scss"
 const Navbar = () => {
     const [nav, setNav] = useState(false)
     const [isAdmin, setIsAdmin] = useState(false)
-    const handleClick = () => setNav(!nav)
-    
+
     const navigate = useNavigate()
     const location = useLocation()
+    const handleClick = () => setNav(!nav)
 
     const authUser = localStorage.getItem('auth_user')
 

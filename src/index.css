@@ -27,6 +27,11 @@
   src: url(./assets/fonts/Lato/Lato-Thin.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: 'Press-Start-Regular';
+  src: url(./assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf) format('truetype');
+}
+
 body, html {
   margin: 0;
   padding: 0;
@@ -38,6 +43,10 @@ body, html {
   font-family: Lato-Regular, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.font-press-start {
+  font-family: Press-Start-Regular, sans-serif;
 }
 
 .dropdown:hover .dropdown-menu {

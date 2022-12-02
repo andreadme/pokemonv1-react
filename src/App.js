@@ -8,26 +8,26 @@ import React from 'react'
 import { Routes , Route } from "react-router-dom"
 import NotFound from "./pages/NotFound"
 import ComingSoon from "./pages/ComingSoon"
-import AddPokemon from './components/AddPokemon'
 import ViewPokemon from './components/ViewPokemon'
-import ViewAllLeagues from './components/ViewAllLeagues'
 import ViewMySlots from './components/ViewMySlots'
 import Dashboard from './components/Dashboard'
+import Pokemons from './pages/Pokemons'
+import Leagues from './pages/Leagues'
+import LeagueContextProvider from './context/LeagueContext'
 
 
 function App() {
   return (
     <>
       <Navbar />
-
-
       <Routes> 
           <Route path ="/login" element= {<Login />}/> 
           <Route path ="/register" element= {<Register />}/>
           <Route path ="/" element= {<Dashboard />}/>
-          <Route path ="/pokedex" element= {<AddPokemon />}/>
-          <Route path ="/leagues" element= {<ViewAllLeagues />}/>
-          <Route path ="/profile" element= {<ViewMySlots />}/>
+          {/* <Route path ="/pokedex" element= {<AddPokemon />}/> */}
+          <Route path ="/pokedex" element= {<Pokemons />}/>
+          <Route path ="/leagues" element= {<Leagues />}/>
+          <Route path ="/profile" element= {<ComingSoon />}/>
           <Route path ="/battles" element= {<ComingSoon />}/>
           <Route path ="/events" element= {<ComingSoon />}/>
           <Route path ="/news" element= {<ComingSoon />}/>

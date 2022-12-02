@@ -5,6 +5,10 @@ class PokemonService {
         return http.post("/create-pokemon", form);
     }
 
+    get(id) {
+        return http.get(`/view-pokemon/${id}`);
+    }
+
     getAll() {
         return http.get("/view-all/pokemon");
     }

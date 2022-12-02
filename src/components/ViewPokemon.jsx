@@ -3,13 +3,22 @@ import { useParams } from "react-router-dom"
 
 import PokemonService from "../services/pokemon"
 
+import style from "../assets/scss/pokemonCard.module.scss"
+import Carousel from 'react-grid-carousel'
+
 const ViewPokemon = () => {
     const { pokemonId } = useParams()
     const [ data, setData ] = useState({})
+    const [ pokemons, setPokemons ] = useState([])
     
     useEffect(() => {
         retrievePokemon(pokemonId)
     }, [pokemonId])
+
+    useEffect(() => {
+        const authUser = localStorage.getItem('auth_user')
+        getTrainerPokemons((JSON.parse(authUser)).id)
+    })
 
     async function retrievePokemon(id) {
         try {
@@ -23,61 +32,72 @@ const ViewPokemon = () => {
         };
     }
 
+    async function getTrainerPokemons() {
+        try {
+            let authUser = localStorage.getItem('auth_user')
+            let form = new FormData();
+            form.append('trainerId', (JSON.parse(authUser)).id)
+
+            const response = await PokemonService.getTrainerPokemons(form);
+            console.log(response);
+            if (response.status === 200) {
+                setPokemons(response.data.data);
+            }
+        } catch(err) {
+            console.log(err)
+        };
+    }
+
     return (
-        <div className="w-full h-full my-32">
-            <div className="max-w-[500px] mx-auto p-5">
-                <div className="text-gray-600 text-[30px] font-bold text-center mb-5">Pokemon</div>
-                <div className="md:flex md:items-center mb-6">
-                    <div className="md:w-1/3">
-                        <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" htmlFor="inline-name">
-                            Name
-                        </label>
-                    </div>
-                    <div className="md:w-2/3">
-                        <span id="inline-name" className="text-gray-500 font-bold">{data.name}</span>
-                    </div>
-                </div>
-                <div className="md:flex md:items-center mb-6">
-                    <div className="md:w-1/3">
-                        <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" htmlFor="inline-type">
-                            Type
-                        </label>
-                    </div>
-                    <div className="md:w-2/3">
-                        <span id="inline-type" className="text-gray-500 font-bold">{data.type}</span>
-                    </div>
-                </div>
-                <div className="md:flex md:items-center mb-6">
-                    <div className="md:w-1/3">
-                        <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" htmlFor="inline-attack-stat">
-                            Attack Stat
-                        </label>
-                    </div>
-                    <div className="md:w-2/3">
-                        <span id="inline-attack-stat" className="text-gray-500 font-bold">{data.attack_stat}</span>
-                    </div>
-                </div>
-                <div className="md:flex md:items-center mb-6">
-                    <div className="md:w-1/3">
-                        <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" htmlFor="inline-defense-stat">
-                            Defense Stat
-                        </label>
-                    </div>
-                    <div className="md:w-2/3">
-                        <span id="inline-defense-stat" className="text-gray-500 font-bold">{data.defense_stat}</span>
-                    </div>
-                </div>
-                <div className="md:flex md:items-center mb-6">
-                    <div className="md:w-1/3">
-                        <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" htmlFor="inline-speed-stat">
-                            Speed Stat
-                        </label>
-                    </div>
-                    <div className="md:w-2/3">
-                        <span id="inline-speed-stat" className="text-gray-500 font-bold">{data.speed_stat}</span>
-                    </div>
-                </div>
-            </div>
+        <div className="w-full h-full">
+            <div className="text-gray-600 text-[30px] font-bold text-center mb-5">My pokemons</div>
+            {
+                pokemons ?
+                <Carousel cols={3} rows={1} gap={10} loop>
+                    {
+                        pokemons.map((current, index) => (
+                            <Carousel.Item>
+                            <div className={`${style.__pokemon_card_container}` 
+                                    + (current.type === "electric" ? ' bg-gradient-to-r via-yellow-300 to-yellow-400' : '')
+                                    + (current.type === "fire" ? ' bg-gradient-to-r from-orange-600 to-orange-500' : '')
+                                    + (current.type === "water" ? ' bg-gradient-to-r from-sky-400 to-blue-500' : '')
+                                    + (current.type === "grass" ? ' bg-gradient-to-r from-green-500 to-green-700' : '')
+                                }>
+                                <div className={`${style.__pokemon_card}`}>
+                                    <div className={`${style.__background} flex ` 
+                                        + (current.type === "electric" ? 'bg-[#a66808]' : '')
+                                        + (current.type === "fire" ? 'bg-[#fa7818]' : '')
+                                        + (current.type === "water" ? 'bg-[#395c95]' : '')
+                                        + (current.type === "grass" ? 'bg-[#28c762]' : '')
+                                        }>
+                                        <img className={`${style.__image} mx-auto my-auto`} src="assets/images/pokeball.png" alt="" />
+                                    </div>
+                                    <div className={`${style.__content} `
+                                        + (current.type === "electric" ? 'bg-[#feea78]' : '')
+                                        + (current.type === "fire" ? 'bg-[#fccc3e]' : '')
+                                        + (current.type === "water" ? 'bg-[#96dbfc]' : '')
+                                        + (current.type === "grass" ? 'bg-[#b1f4c9]' : '')
+                                        }>
+                                        <h1 className={`${style.__pokemon_name} uppercase`}>{current.name}</h1>
+                                        <span className={`${style.__pokemon_type}`}>{current.type}</span>
+                                        <div className={`${style.__pokemon_stats}`}>
+                                            <p>Attack : <span>{current.attack_stat}</span></p>
+                                            <p>Defense : <span>{current.defense_stat}</span></p>
+                                            <p>Speed : <span>{current.speed_stat}</span></p>
+                                        </div>
+                                        
+                                        <h1 className={`${style.__pokemon_logo}`}>Pickahu</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            </Carousel.Item>
+        
+                        ))
+                    }
+                </Carousel>
+                :
+                <div>You have no pokemons.</div>
+            }
         </div>
     );
 };
