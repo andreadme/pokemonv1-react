@@ -50,17 +50,17 @@ const ViewMySlots = () => {
                     {
                         data && activeLeague &&
                         <>
-                        <div className="md:flex md:items-center">
+                        <div className="md:flex md:items-center pt-10">
                             <table className="min-w-full text-center">
                                 <thead className="border-b">
                                     <tr>
-                                        <th scope="col" className="text-xl font-medium text-gray-900 py-2">
+                                        <th scope="col" className="text-md font-press-start text-gray-900 py-2">
                                         Slot
                                         </th>
-                                        <th scope="col" className="text-xl font-medium text-gray-900">
+                                        <th scope="col" className="text-md font-press-start text-gray-900">
                                         First Pokemon
                                         </th>
-                                        <th scope="col" className="text-xl font-medium text-gray-900">
+                                        <th scope="col" className="text-md font-press-start text-gray-900">
                                         Second Pokemon
                                         </th>
                                     </tr>
@@ -69,17 +69,17 @@ const ViewMySlots = () => {
                                     {
                                         data[activeLeague].slots.map((slot, index) => (
                                             <tr className="border-b">
-                                                <td className="text-lg text-gray-900 font-medium py-2 whitespace-nowrap">
+                                                <td className="text-lg text-gray-900 font-press-start py-2 whitespace-nowrap">
                                                     {index+1}
                                                 </td>
-                                                <td className="text-lg text-gray-900 font-medium py-2 whitespace-nowrap">
+                                                <td className=" text-gray-900 font-press-start py-2 whitespace-nowrap">
                                                     {
-                                                        slot.firstPokemon ? (<span>{slot.firstPokemon.pokemonName}</span>) : (<span></span>)
+                                                        slot.firstPokemon ? (<span className="text-md font-press-start">{slot.firstPokemon.pokemonName}</span>) : (<span></span>)
                                                     }
                                                 </td>
-                                                <td className="text-lg text-gray-900 font-medium py-2 whitespace-nowrap">
+                                                <td className=" text-gray-900 font-press-start py-2 whitespace-nowrap">
                                                     {
-                                                        slot.secondPokemon ? (<span>{slot.secondPokemon.pokemonName}</span>) : (<span></span>)
+                                                        slot.secondPokemon ? (<span className="text-md font-press-start">{slot.secondPokemon.pokemonName}</span>) : (<span></span>)
                                                     }
                                                 </td>
                                             </tr>

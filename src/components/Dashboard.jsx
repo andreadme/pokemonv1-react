@@ -60,29 +60,19 @@ const Dashboard = () => {
                 </div>
 
                 <div className='grid md:grid-cols-3 gap-1 px-2 text-center'>
-                    {
-                        pokemonCount &&
-                            <div className="border py-8 rounded-xl shadow-xl bg-[#111827]" >
-                            <p className='text-6xl font-bold text-white'>{pokemonCount}</p>
-                            <p className='text-white mt-2 text-2xl'>Registered Pokemons</p>
-                        </div>
-                    }
-
-                    {
-                        pokemonCount &&
-                        <div  className='border py-8 rounded-xl shadow-xl bg-[#111827]' >
-                            <p className='text-6xl font-bold text-white'>{leagueCount}</p>
-                            <p className='text-white mt-2 text-2xl'>Registered Leagues</p>
-                        </div>
-                    }
-
-                    {
-                        trainerCount &&
-                        <div  className='border py-8 rounded-xl shadow-xl bg-[#111827]' >
-                            <p className='text-6xl font-bold text-white'>{trainerCount}</p>
-                            <p className='text-white mt-2 text-2xl'>Registered Trainers</p>
-                        </div>
-                    }
+                    <div className="border py-8 rounded-xl shadow-xl bg-[#111827]" >
+                        <p className='text-6xl font-bold text-white'>{pokemonCount !== 0 || pokemonCount !== null ? pokemonCount : 0}</p>
+                        <p className='text-white mt-2 text-2xl'>Registered Pokemons</p>
+                    </div>
+                    <div  className='border py-8 rounded-xl shadow-xl bg-[#111827]' >
+                        <p className='text-6xl font-bold text-white'>{leagueCount !== 0 || leagueCount !== null ? leagueCount : 0}</p>
+                        <p className='text-white mt-2 text-2xl'>Registered Leagues</p>
+                    </div>
+                    <div  className='border py-8 rounded-xl shadow-xl bg-[#111827]' >
+                        {/* less admin */}
+                        <p className='text-6xl font-bold text-white'>{trainerCount !== 0 || trainerCount !== null ? (trainerCount - 1) : 0}</p>
+                        <p className='text-white mt-2 text-2xl'>Registered Trainers</p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -6,12 +6,15 @@ import SlotService from "../services/slot"
 
 import { useNavigate } from "react-router-dom"
 
+import moment from "moment"
+
 const ViewAllLeagues = () => {
     const [ slots, setSlots ] = useState(0)
     const [ trainerId, setTrainerId ] = useState(0)
     const [ leagues, setLeagues ] = useState([])
     const [ pokemons, setPokemons ] = useState([])
     const [ activeLeague, setActiveLeague ] = useState(null)
+    const [ leagueData, setLeagueData ] = useState({})
     const [ firstSlot, setFirstSlot ] = useState([])
     const [ secondSlot, setSecondSlot ] = useState([])
     const [ message, setMessage ] = useState("")
@@ -67,6 +70,7 @@ const ViewAllLeagues = () => {
                 setSlots(response.data.data[0].slots);
                 initializeArray(response.data.data[0].slots);
                 setMaxLimit(response.data.data[0].max_stats_limit)
+                setLeagueData(response.data.data[0]);
             }
         } catch(err) {
             console.log(err)
@@ -251,7 +255,7 @@ const ViewAllLeagues = () => {
         <div className="w-full h-[655px] self-end p-10">
             <div className="max-w-[500px] mx-auto p-5">
                 {
-                    message ? 
+                    message && !leagueData &&
                     <div className={`${isError ? 'bg-red-100 dark:bg-red-200' : 'bg-green-100 dark:bg-green-200'} w-full mx-auto flex md:p-4 p-2 rounded-lg mb-6`} role="alert">
                         {/* {isError ? 
                             <MdErrorOutline style={{ '--tw-text-opacity': 1, fontSize: '30px', fill: 'rgb(185 28 28 / var(--tw-text-opacity))' }} /> 
@@ -261,6 +265,23 @@ const ViewAllLeagues = () => {
                         <span className="sr-only">Error</span>
                         <div className={`${isError ? 'text-red-700 dark:text-red-800' : 'text-green-700 dark:green-red-800' } ml-3 pt-[0.2rem] text-sm font-press-start`}>
                             {message}
+                        </div>
+                    </div>
+                }
+
+                {
+                    activeLeague && leagueData ?
+                    <div className={`bg-[#a3b97a] w-full mx-auto flex md:p-4 p-2 rounded-lg mb-6`} role="alert">
+                        <div className={` ml-3 pt-[0.2rem] text-sm font-press-start`}>
+                            Location: {leagueData.location}
+                            <br />
+                            Terrain: {leagueData.terrain}
+                            <br />
+                            Start date: {moment(leagueData.start_date).format("LL")}
+                            <br />
+                            Slots: {leagueData.slots}
+                            <br />
+                            Maximum Stats Limit: {leagueData.max_stats_limit}
                         </div>
                     </div>
                     :

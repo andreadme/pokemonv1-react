@@ -17,7 +17,7 @@ const ViewPokemon = () => {
 
     useEffect(() => {
         const authUser = localStorage.getItem('auth_user')
-        getTrainerPokemons((JSON.parse(authUser)).id)
+        retrieveAllPokemonsByTrainer((JSON.parse(authUser)).id)
     })
 
     async function retrievePokemon(id) {
@@ -32,16 +32,11 @@ const ViewPokemon = () => {
         };
     }
 
-    async function getTrainerPokemons() {
+    async function retrieveAllPokemonsByTrainer(id) {
         try {
-            let authUser = localStorage.getItem('auth_user')
-            let form = new FormData();
-            form.append('trainerId', (JSON.parse(authUser)).id)
-
-            const response = await PokemonService.getTrainerPokemons(form);
-            console.log(response);
+            const response = await PokemonService.getTrainerPokemons(id);
             if (response.status === 200) {
-                setPokemons(response.data.data);
+                setPokemons(response.data.data)
             }
         } catch(err) {
             console.log(err)
