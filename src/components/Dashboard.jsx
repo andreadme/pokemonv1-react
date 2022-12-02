@@ -70,7 +70,7 @@ const Dashboard = () => {
                     </div>
                     <div  className='border py-8 rounded-xl shadow-xl bg-[#111827]' >
                         {/* less admin */}
-                        <p className='text-6xl font-bold text-white'>{trainerCount !== 0 || trainerCount !== null ? (trainerCount - 1) : 0}</p>
+                        <p className='text-6xl font-bold text-white'>{trainerCount !== 0 || trainerCount !== null ? trainerCount : 0}</p>
                         <p className='text-white mt-2 text-2xl'>Registered Trainers</p>
                     </div>
                 </div>

@@ -56,14 +56,16 @@ const ViewPokemon = () => {
                                     + (current.type === "electric" ? ' bg-gradient-to-r via-yellow-300 to-yellow-400' : '')
                                     + (current.type === "fire" ? ' bg-gradient-to-r from-orange-600 to-orange-500' : '')
                                     + (current.type === "water" ? ' bg-gradient-to-r from-sky-400 to-blue-500' : '')
-                                    + (current.type === "grass" ? ' bg-gradient-to-r from-green-500 to-green-700' : '')
+                                    + (current.type === "grass" ? ' bg-gradient-to-r from-green-500 to-green-700' : ' bg-gradient-to-r from-gray-700 via-gray-900 to-black')
+                                    // + (current.type ? ' bg-gradient-to-r from-gray-700 via-gray-900 to-black' : '')
                                 }>
                                 <div className={`${style.__pokemon_card}`}>
                                     <div className={`${style.__background} flex ` 
                                         + (current.type === "electric" ? 'bg-[#a66808]' : '')
                                         + (current.type === "fire" ? 'bg-[#fa7818]' : '')
                                         + (current.type === "water" ? 'bg-[#395c95]' : '')
-                                        + (current.type === "grass" ? 'bg-[#28c762]' : '')
+                                        + (current.type === "grass" ? 'bg-[#28c762]' : 'bg-[#d2d0f3]')
+                                        // + (current.type ? 'bg-[#d2d0f3]' : '')
                                         }>
                                         <img className={`${style.__image} mx-auto my-auto`} src="assets/images/pokeball.png" alt="" />
                                     </div>
@@ -71,7 +73,8 @@ const ViewPokemon = () => {
                                         + (current.type === "electric" ? 'bg-[#feea78]' : '')
                                         + (current.type === "fire" ? 'bg-[#fccc3e]' : '')
                                         + (current.type === "water" ? 'bg-[#96dbfc]' : '')
-                                        + (current.type === "grass" ? 'bg-[#b1f4c9]' : '')
+                                        + (current.type === "grass" ? 'bg-[#b1f4c9]' : 'bg-[#343e4e]')
+                                        // + (current.type ? 'bg-[#343e4e]' : '')
                                         }>
                                         <h1 className={`${style.__pokemon_name} uppercase`}>{current.name}</h1>
                                         <span className={`${style.__pokemon_type}`}>{current.type}</span>
@@ -81,7 +84,7 @@ const ViewPokemon = () => {
                                             <p>Speed : <span>{current.speed_stat}</span></p>
                                         </div>
                                         
-                                        <h1 className={`${style.__pokemon_logo}`}>Pickahu</h1>
+                                        <h1 className={`${style.__pokemon_logo}`}>{current.name}</h1>
                                     </div>
                                 </div>
                             </div>

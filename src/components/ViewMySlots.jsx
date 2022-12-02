@@ -14,9 +14,12 @@ const ViewMySlots = () => {
     })
 
     async function retrieveMySlots(id) {
+        console.log(id);
+        // if (id === 0) return setActiveLeague(0);
         try {
             const response = await SlotService.getTrainerSlots(id);
             if (response.status === 200) {
+                console.log(response.data.data)
                 setData(response.data.data)
             }
         } catch(err) {
@@ -33,22 +36,21 @@ const ViewMySlots = () => {
             <div className="h-[655px] self-end p-10">
                 <div className="max-w-[500px] mx-auto p-5">
                 <div className="text-white text-[30px] font-bold text-center mb-5 font-press-start">My Slots</div>
-
-                                <select id="league"
-                                    onChange={(e) => handleLeague(e)}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5">
-                                    <option disabled>Choose a league</option>
-                                    <option value="0" key={`league-none`}>None</option>
-                                    {
-                                        data && 
-                                        data.map((current, index) => (
-                                            <option value={`${index}`} key={`league-${current.leagueName}`}>{current.leagueName}</option>
-                                        ))
-                                    }
-                                </select>
+                    <select id="league"
+                        onChange={(e) => handleLeague(e)}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5">
+                        <option disabled>Choose a league</option>
+                        <option value="0" key={`league-none`}>None</option>
+                        {
+                            data && 
+                            data.map((current, index) => (
+                                <option value={current.leagueId} key={`league-${current.leagueName}`}>{current.leagueName}</option>
+                            ))
+                        }
+                    </select>
                 </div>
                     {
-                        data && activeLeague &&
+                        data && activeLeague !== 0 &&
                         <>
                         <div className="md:flex md:items-center pt-10">
                             <table className="min-w-full text-center">
@@ -67,7 +69,7 @@ const ViewMySlots = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        data[activeLeague].slots.map((slot, index) => (
+                                        data[activeLeague]?.slots?.map((slot, index) => (
                                             <tr className="border-b">
                                                 <td className="text-lg text-gray-900 font-press-start py-2 whitespace-nowrap">
                                                     {index+1}
