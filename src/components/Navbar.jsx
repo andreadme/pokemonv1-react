@@ -60,8 +60,8 @@ const Navbar = () => {
                             </>
                             :
                             <>
-                                <li className={`${style.__nav_container} group nav-pokedex flex-1`}>
-                                <Link to="/pokedex" className={`${style.__nav_link} p-2 md:p-4`}>
+                                <li className={`${style.__nav_container} group nav-pokemon flex-1`}>
+                                <Link to="/pokemon" className={`${style.__nav_link} p-2 md:p-4`}>
                                     <span className={`${style.__nav_fill} bg-[#E3350D] active:bg-violet-700`}></span>
                                     <span className={`${style.__nav_logo} mx-auto`}><img src="assets/icons/icons8-meowth-48.png" alt=""/></span>
                                     <span className={`${style.__nav_title} group-hover:text-white text-[#464646]`}>Pokémon</span>
@@ -152,7 +152,7 @@ const Navbar = () => {
                     {
                         authUser && !isAdmin &&
                         <>
-                            <Link to="/pokedex">
+                            <Link to="/pokemon">
                                 <button className="text-[#111827] w-full md:mb-0 mb-2 px-8 py-3">Pokémon</button>
                             </Link>
                             <Link to="/leagues">

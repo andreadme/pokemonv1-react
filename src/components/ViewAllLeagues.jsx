@@ -7,6 +7,7 @@ import SlotService from "../services/slot"
 import { useNavigate } from "react-router-dom"
 
 import moment from "moment"
+import slot from "../services/slot"
 
 const ViewAllLeagues = () => {
     const [ slots, setSlots ] = useState(0)
@@ -26,11 +27,10 @@ const ViewAllLeagues = () => {
     
     useEffect(() => {
         retrieveAllLeagues()
-    }, [])
+    })
 
     useEffect(() => {
         const authUser = localStorage.getItem('auth_user')
-        console.log(authUser)
         retrieveAllPokemonsByTrainer((JSON.parse(authUser)).id)
     })
 
@@ -44,6 +44,7 @@ const ViewAllLeagues = () => {
         try {
             const response = await LeagueService.getAll();
             if (response.status === 200) {
+                // console.log(response.data.data)
                 setLeagues(response.data.data);
             }
         } catch(err) {
@@ -65,7 +66,6 @@ const ViewAllLeagues = () => {
     async function retrieveLeague(id) {
         try {
             const response = await LeagueService.get(id);
-            console.log(response);
             if (response.status === 200) {
                 console.log(response.data.data[0].slots)
                 setSlots(response.data.data[0].slots);
@@ -111,19 +111,38 @@ const ViewAllLeagues = () => {
         try {
             console.log(firstSlot)
             console.log(secondSlot)
-            console.log(trainerId)
             let authUser = localStorage.getItem('auth_user')
             let data = new FormData()
-            console.log(JSON.parse(authUser).id)
             data.append('trainerId', JSON.parse(authUser).id)
             data.append('leagueId', activeLeague)
             data.append('firstSlotData', JSON.stringify(firstSlot))
-            data.append('secondSlotData', JSON.stringify(secondSlot))
+            data.append('secondSlotData', JSON.stringify(secondSlot)) 
+            console.log(sumOfStats);
+            console.log(sumOfStats);
+            data.append('totalOverall', sumOfStats)
+
+            let attackStatRecords = firstSlot.map(function(current, idx) {
+                return current.attackStat + secondSlot[idx].attackStat
+            })
+
+            let defenseStatRecords = firstSlot.map(function(current, idx) {
+                return current.defenseStat + secondSlot[idx].defenseStat
+            })
+
+            let speedStatRecords = firstSlot.map(function(current, idx) {
+                return current.speedStat + secondSlot[idx].speedStat
+            })
+
+            console.log(attackStatRecords);
+            console.log(defenseStatRecords);
+            console.log(speedStatRecords);
+            data.append('attackStatRecords', JSON.stringify(attackStatRecords))
+            data.append('defenseStatRecords', JSON.stringify(defenseStatRecords))
+            data.append('speedStatRecords', JSON.stringify(speedStatRecords))
+
             const response = await SlotService.create(data);
-            console.log(response)
             if (response.status === 200) {
                 setForm(false, response.data.message)
-                console.log(response)
             }
         } catch(err) {
             setForm(true, err.response.data.message)
@@ -133,6 +152,7 @@ const ViewAllLeagues = () => {
     }
 
     const setForm = (errorVal, message) => {
+        setIsDataShown(false);
         setIsError(errorVal)
         setMessage(message)
     }
@@ -202,7 +222,7 @@ const ViewAllLeagues = () => {
 
         let firstSpeed = firstSlot.map(val => val.speedStat);
         let secondSpeed = secondSlot.map(val => val.speedStat);
-
+        
         let merged = firstAttack.concat(secondAttack, firstDefense, secondDefense, firstSpeed, secondSpeed);
         console.log(merged)
 

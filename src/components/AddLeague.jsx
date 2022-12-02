@@ -44,7 +44,7 @@ const AddLeague = () => {
     }
 
     return (
-        <div className="w-full h-full">
+        <div className="w-full h-full my-32">
             <div className="max-w-[500px] mx-auto p-5">
                 <div className="text-gray-600 text-[30px] font-bold text-center mb-5">Register a new league</div>
                 <form onSubmit={handleSubmit(onSubmit)}>

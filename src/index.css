@@ -75,7 +75,7 @@ li.nav-home:hover a, li.nav-container:active a {
   background-color: #919191;
 }
 
-li.nav-pokedex:after {
+li.nav-pokemon:after {
   background-color: #E3350D;
   border-radius: 0 0 0 8px;
   content: ' ';
@@ -87,7 +87,7 @@ li.nav-pokedex:after {
   z-index: 1;
 }
 
-li.nav-pokedex:hover a, li.nav-pokedex:active a {
+li.nav-pokemon:hover a, li.nav-pokemon:active a {
   transition: background-color 0.3s;
   transition-timing-function: ease-out;
   background-color: #E3350D;

@@ -1,39 +1,12 @@
 import React, { useEffect, useState, useContext } from "react"
 import LeagueContext from "../context/LeagueContext";
 
-import SlotService from "../services/slot"
 
-const ViewMySlots = () => {
-    // const { trainerId } = useParams()
-    const [ data, setData ] = useState([])
-    const [ activeLeague, setActiveLeague ] = useState(0)
-    
-    useEffect(() => {
-        const authUser = localStorage.getItem('auth_user')
-        retrieveMySlots((JSON.parse(authUser)).id)
-    })
 
-    async function retrieveMySlots(id) {
-        console.log(id);
-        // if (id === 0) return setActiveLeague(0);
-        try {
-            const response = await SlotService.getTrainerSlots(id);
-            if (response.status === 200) {
-                console.log(response.data.data)
-                setData(response.data.data)
-            }
-        } catch(err) {
-            console.log(err)
-        };
-    }
-
-    const handleLeague = (e) => {
-        setActiveLeague(e.target.value)
-    }
-
+const ViewMySlots = ({ data, activeLeague, handleLeague }) => {
     return (
         <>
-            <div className="h-[655px] self-end p-10">
+            <div className="w-full h-[655px] self-end p-10">
                 <div className="max-w-[500px] mx-auto p-5">
                 <div className="text-white text-[30px] font-bold text-center mb-5 font-press-start">My Slots</div>
                     <select id="league"
@@ -44,7 +17,7 @@ const ViewMySlots = () => {
                         {
                             data && 
                             data.map((current, index) => (
-                                <option value={current.leagueId} key={`league-${current.leagueName}`}>{current.leagueName}</option>
+                                <option value={index} key={`league-${current.leagueName}`}>{current.leagueName}</option>
                             ))
                         }
                     </select>
@@ -53,13 +26,13 @@ const ViewMySlots = () => {
                         data && activeLeague !== 0 &&
                         <>
                         <div className="md:flex md:items-center pt-10">
-                            <table className="min-w-full text-center">
+                            <table className="min-w-full text-center p-5" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
                                 <thead className="border-b">
                                     <tr>
                                         <th scope="col" className="text-md font-press-start text-gray-900 py-2">
                                         Slot
                                         </th>
-                                        <th scope="col" className="text-md font-press-start text-gray-900">
+                                        <th scope="col" className="text-md font-press-start text-gray-900 py-2">
                                         First Pokemon
                                         </th>
                                         <th scope="col" className="text-md font-press-start text-gray-900">
@@ -71,7 +44,7 @@ const ViewMySlots = () => {
                                     {
                                         data[activeLeague]?.slots?.map((slot, index) => (
                                             <tr className="border-b">
-                                                <td className="text-lg text-gray-900 font-press-start py-2 whitespace-nowrap">
+                                                <td className="text-md text-gray-900 font-press-start py-2 whitespace-nowrap">
                                                     {index+1}
                                                 </td>
                                                 <td className=" text-gray-900 font-press-start py-2 whitespace-nowrap">

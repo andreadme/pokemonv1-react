@@ -14,6 +14,7 @@ import Dashboard from './components/Dashboard'
 import Pokemons from './pages/Pokemons'
 import Leagues from './pages/Leagues'
 import LeagueContextProvider from './context/LeagueContext'
+import Profile from './pages/Profile'
 
 
 function App() {
@@ -24,10 +25,10 @@ function App() {
           <Route path ="/login" element= {<Login />}/> 
           <Route path ="/register" element= {<Register />}/>
           <Route path ="/" element= {<Dashboard />}/>
-          {/* <Route path ="/pokedex" element= {<AddPokemon />}/> */}
-          <Route path ="/pokedex" element= {<Pokemons />}/>
+          {/* <Route path ="/pokemon" element= {<AddPokemon />}/> */}
+          <Route path ="/pokemon" element= {<Pokemons />}/>
           <Route path ="/leagues" element= {<Leagues />}/>
-          <Route path ="/profile" element= {<ComingSoon />}/>
+          <Route path ="/profile" element= {<Profile />}/>
           <Route path ="/battles" element= {<ComingSoon />}/>
           <Route path ="/events" element= {<ComingSoon />}/>
           <Route path ="/news" element= {<ComingSoon />}/>

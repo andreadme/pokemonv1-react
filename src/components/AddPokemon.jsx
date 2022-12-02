@@ -55,7 +55,7 @@ const AddPokemon = () => {
     }
 
     const retrievePokemons = () => {
-        fetch('https://pokeapi.co/api/v2/pokemon/?limit=1000')
+        fetch('https://pokeapi.co/api/v2/pokemon/?limit=100')
             .then(response => response.json())
             .then(data => {
                 let results = data.results;

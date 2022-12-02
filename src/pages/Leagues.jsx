@@ -39,6 +39,12 @@ const Leagues = () => {
                                 <div className={`${style.__fold_sm}`}></div>
                                 <div className={`${style.__triangle}`}><div className={`${style.__triangle_inner}`}></div></div>
                                 <div className={`${style.__fold_cover}`}></div>
+                                <div className={`${style.__circle}`}>
+                                    <div className={`${style.__inner_circle}`}></div>
+                                </div>
+                                <div className={`${style.__ellipsis_1}`}></div>
+                                <div className={`${style.__ellipsis_2}`}></div>
+                                <div className={`${style.__ellipsis_3}`}></div>
                                 <div className={`${style.__table_card} md:flex md:flex-row flex-col`}>
                                     <div className={`${style.__back} flex`}>
                                         <ViewAllLeagues />
@@ -51,7 +57,7 @@ const Leagues = () => {
                                         <div className={`${style.__front_triangle}`}>
                                             <div className={`${style.__front_inner_triangle}`}></div>
                                         </div>
-                                        <ViewMySlots />
+                                        {/* <ViewMySlots /> */}
                                             
                                         {/* <div className={`${style.__front_fold}`}></div> */}
                                     </div>
