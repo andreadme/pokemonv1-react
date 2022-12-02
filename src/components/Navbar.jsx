@@ -48,7 +48,7 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                         {
-                            authUser && isAdmin &&
+                            authUser && isAdmin ?
                             <>
                                 <li className={`${style.__nav_container} group nav-leagues flex-1`}>
                                 <Link to="/create-league" className={`${style.__nav_link} p-2 md:p-4`}>
@@ -58,9 +58,7 @@ const Navbar = () => {
                                 </Link>
                                 </li>
                             </>
-                        }
-                        {
-                            authUser && !isAdmin &&
+                            :
                             <>
                                 <li className={`${style.__nav_container} group nav-pokedex flex-1`}>
                                 <Link to="/pokedex" className={`${style.__nav_link} p-2 md:p-4`}>
